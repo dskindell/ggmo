@@ -1,5 +1,7 @@
 # Global GoogleMock Objects #
 
+An API to help write GoogleTest/GoogleMock unit tests for C projects.
+
 # README #
 
 Simply add the ggmo.h header to your project and include it in every GoogleTest unit test source file.
