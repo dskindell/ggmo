@@ -9,15 +9,12 @@ The provided API will allow to define mocks for your C or global functions using
 
 1. Add the ggmo.h header to your project.
 2. Write your GoogleTest test source file (\*\_test.cpp) and include
-   * gtest/gtest.h
-   * gmock/gmock.h
-   * ggmo.h
-   * production\_source.c
-3. Define your mocks for your global functions. The functions you
-wish to mock cannot be defined in 'production\_source.c'.
-4. Use GMO\_EXPECT\_CALL and GMO\_ON\_CALL macros just as you would
-GoogleMock's EXPECT\_CALL and ON\_CALL with 1 additional restriction
-(shown below).
+    * gtest/gtest.h
+    * gmock/gmock.h
+    * ggmo.h
+    * production\_source.c
+3. Define your mocks for your global functions. The functions you wish to mock cannot be defined in 'production\_source.c'.
+4. Use GMO\_EXPECT\_CALL and GMO\_ON\_CALL macros just as you would GoogleMock's EXPECT\_CALL and ON\_CALL.
 5. Compile your test source and link with the GoogleTest libraries
 6. Run test files.
    
@@ -94,8 +91,11 @@ Given the example above, there are 3 sections to define using the ggmo API.
 #### How do I define the global mock classes? ####
 
 ##### Mocking functions with a return type #####
+
 The general syntax is:
-MOCK\_GLOBAL\_OBJ#(rtn\_type, func, arg\_types...)
+
+    MOCK\_GLOBAL\_OBJ#(rtn\_type, func, arg\_types...)
+	
 Where
   - #: the number of arguments the global object takes
   - func: the name of the function being mocked
@@ -103,8 +103,11 @@ Where
   - rtn\_type: return type of 'func'
   
 So for a function
+
     char * my_itoa(char * str, int num, int base)
+	
 the mock class declaration would be
+
     MOCK_GLOBAL_OBJ3(char *, my_itoa, char *, int, int) {}
 
 Within the class defintion, you may optionally provided default behavior for the mock object
@@ -119,7 +122,9 @@ to, by default, return a NULL pointer you would write:
 ##### Mocking functions that return 'void' #####
 
 If you mocking function returns void the syntax changes to:
+
     MOCK_GLOBAL_VOID_OBJ#(func, arg_types...);
+	
 Which matches except the '\_VOID\_' and the lack of a rtn\_type.
 
 #### How do I declare the global mock objects? ####
@@ -137,9 +142,11 @@ This line is required to instantiate the singeton mock-able classes defined in t
 Skipping this line will result in odd crashes when you run your tests and the mocked function is called by the SUT.
 
 There are 3 forms this declaration have have:
+
     DECL_GLOBAL_FUNC_MOCK(func); // Declare a naggy GoogleMock mock object.
     DECL_NICE_GLOBAL_FUNC_MOCK(func); // Declare a nice GoogleMock mock object.
     DECL_STRICT_GLOBAL_FUNC_MOCK(func); // Declare a strict GoogleMock mock object.
+	
 See the GoogleMock documentation for an explaination of the 3 types of mock objects.
 
 Another option is to group all the functions of file/module into helper files and have your test fixtures
