@@ -14,10 +14,10 @@ The provided API will allow to define mocks for your C or global functions using
    * ggmo.h
    * production\_source.c
 3. Define your mocks for your global functions. The functions you
-   wish to mock cannot be defined in 'production\_source.c'.
+wish to mock cannot be defined in 'production\_source.c'.
 4. Use GMO\_EXPECT\_CALL and GMO\_ON\_CALL macros just as you would
-   GoogleMock's EXPECT\_CALL and ON\_CALL with 1 additional restriction
-   (shown below).
+GoogleMock's EXPECT\_CALL and ON\_CALL with 1 additional restriction
+(shown below).
 5. Compile your test source and link with the GoogleTest libraries
 6. Run test files.
    
@@ -107,9 +107,9 @@ So for a function
 the mock class declaration would be
     MOCK_GLOBAL_OBJ3(char *, my_itoa, char *, int, int) {}
 
-Within the class defintion, you may optionally provided default behavior for the mock
-object (following the documentation for GoogleMock). So for the example above if you
-wanted the function to, by default, return a NULL pointer you would write:
+Within the class defintion, you may optionally provided default behavior for the mock object
+(following the documentation for GoogleMock). So for the example above if you wanted the function
+to, by default, return a NULL pointer you would write:
 
     MOCK_GLOBAL_OBJ3(char *, my_itoa, char *, int, int)
 	{
@@ -119,7 +119,7 @@ wanted the function to, by default, return a NULL pointer you would write:
 ##### Mocking functions that return 'void' #####
 
 If you mocking function returns void the syntax changes to:
-MOCK\_GLOBAL\_VOID\_OBJ#(func, arg\_types...)
+    MOCK_GLOBAL_VOID_OBJ#(func, arg_types...);
 Which matches except the '\_VOID\_' and the lack of a rtn\_type.
 
 #### How do I declare the global mock objects? ####
@@ -132,8 +132,9 @@ In the example above we have:
 		    DECL_GLOBAL_FUNC_MOCK(bar);
 	};
 
-DECL\_GLOBAL\_FUNC\_MOCK(func);
-This line is required to instantiate the singeton mock-able classes defined in the previous step. Skipping this line will result in odd crashes when you run your tests and the mocked function is called by the SUT.
+**DECL\_GLOBAL\_FUNC\_MOCK(func);**
+This line is required to instantiate the singeton mock-able classes defined in the previous step.
+Skipping this line will result in odd crashes when you run your tests and the mocked function is called by the SUT.
 
 There are 3 forms this declaration have have:
     DECL_GLOBAL_FUNC_MOCK(func); // Declare a naggy GoogleMock mock object.
@@ -141,7 +142,9 @@ There are 3 forms this declaration have have:
     DECL_STRICT_GLOBAL_FUNC_MOCK(func); // Declare a strict GoogleMock mock object.
 See the GoogleMock documentation for an explaination of the 3 types of mock objects.
 
-Another option is to group all the functions of file/module into helper files and have your test fixtures inheirt from these helper classes. This way you define your test modules and avoid declaring your mock objects repeatedly. A simple setup would be:
+Another option is to group all the functions of file/module into helper files and have your test fixtures
+inheirt from these helper classes. This way you define your test modules and avoid declaring your mock
+objects repeatedly. A simple setup would be:
 
     // mock_module_bar.h
 	#include "ggmo.h"
@@ -187,7 +190,8 @@ Now the module\_foo\_test.cpp from above would look like this:
 	    GMO_EXPECT_CALL(bar,(10)).WillOnce(Return(1));
 	    EXPECT_THAT(foo(10), Eq(2));
 	}
-The limitation here is you cannot change the mock type (naggy/strict/nice) of individual functions of bar (i.e. nice bar() and naggy other\_bar\_func()).
+The limitation here is you cannot change the mock type (naggy/strict/nice) of individual functions of
+bar (i.e. nice bar() and naggy other\_bar\_func()).
 
 #### How do I define the global mock expectations? ####
 
@@ -207,7 +211,8 @@ Where GMO(foo) gets the singleton object that holds the mock for foo().
 
 ### What limitations are there compared to classic GoogleMock objects ###
 
-1. Cannot declare multiple global mock objects for functions with optional parameters. You can provide at most 1 global mock class signature for each function/symbol.
+1. Cannot declare multiple global mock objects for functions with optional parameters. You can provide at
+most 1 global mock class signature for each function/symbol.
 
 ### Who do I talk to? ###
 
