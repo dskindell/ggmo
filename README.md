@@ -27,10 +27,10 @@ production **header** files).
 
 For example, given a project with production source:
 
-inc/module\_foo.h
-inc/module\_bar.h
-src/module\_foo.c
-src/module\_bar.c
+    inc/module\_foo.h
+    inc/module\_bar.h
+    src/module\_foo.c
+    src/module\_bar.c
 
 Unit tests for module\_foo.c may mock out all functions definined in module\_bar.c and visa-versa.
 However, any functions in module\_foo. cannot be mocked when testing module\_foo.c. Moving functions
@@ -39,15 +39,15 @@ to other source files is the best way to de-couple your source for unit testing.
 So back to our example, given the production source above, our unit tests file might
 be organized like so:
 
-test/support/googletest/inc/...
-test/support/ggmo.h
-test/module\_foo\_test.cpp
-test/module\_bar\_test.cpp
+    test/support/googletest/inc/...
+    test/support/ggmo.h
+    test/module\_foo\_test.cpp
+    test/module\_bar\_test.cpp
 
 Which, when build would produce test files:
 
-bin/module\_foo\_test.exe
-bin/module\_bar\_test.exe
+    bin/module\_foo\_test.exe
+    bin/module\_bar\_test.exe
 
 ### How do I use the API ###
 
