@@ -225,6 +225,8 @@ Where GMO(foo) gets the singleton object that holds the mock for foo().
 
 1. Cannot declare multiple global mock objects for functions with optional parameters. You can provide at
 most 1 global mock class signature for each function/symbol.
+2. Currently the maximum function signature that can be mocked is 10 parameters which was the max for GoogleMock
+when this API was written.
 
 ### Who do I talk to? ###
 
