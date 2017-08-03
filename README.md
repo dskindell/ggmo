@@ -208,12 +208,17 @@ Defining the expectations of a GMO mock object is the same as with classic Googl
 2. You must add an extra comma between the function name and the parameter list.
 
 So if the GoogleMock expectation looked like:
+
     EXPECT_CALL(my_obj, foo(_, Eq(1))).WillOnce(Return(1));
+	
 The equivalent GMO expectation would be:
+
     GMO_EXPECT_CALL(foo, (_,Eq(1))).WillOnce(Return(1));
 
 To help understand this, or if you do not want to use the GMO\_ or extra comma, the longer version would be:
+
     EXPECT_CALL(GMO(foo), foo(_, Eq(1))).WillOnce(Return(1));
+	
 Where GMO(foo) gets the singleton object that holds the mock for foo().
 
 ### What limitations are there compared to classic GoogleMock objects ###
