@@ -7,7 +7,7 @@
  */
 #ifndef GGMO_H_
 #define GGMO_H_
-
+ 
 #define MOCK_GLOBAL_FUNC_T(func) Mock_##func
 #define GMO(func) _mock_##func
 #define GMO_EXPECT_CALL(name, params) EXPECT_CALL(GMO(name), name params)
