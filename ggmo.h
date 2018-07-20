@@ -134,7 +134,7 @@ rtn_t name(arg0_t arg0, arg1_t arg1, arg2_t arg2, arg3_t arg3)
    _MOCK_GLOBAL_OBJ4(rtn_t, name, arg0_t, arg1_t, arg2_t, arg3_t) { return GMOSingletonMock<MOCK_GLOBAL_FUNC_T(name)>::get()->name(arg0, arg1, arg2, arg3); } \
    void MOCK_GLOBAL_FUNC_T(name)::initialize()
 
-#define MOCK_GLOBAL_VOID_OBJ4(rtn_t, name, arg0_t, arg1_t, arg2_t, arg3_t) \
+#define MOCK_GLOBAL_VOID_OBJ4(name, arg0_t, arg1_t, arg2_t, arg3_t) \
    _MOCK_GLOBAL_OBJ4(void, name, arg0_t, arg1_t, arg2_t, arg3_t) { GMOSingletonMock<MOCK_GLOBAL_FUNC_T(name)>::get()->name(arg0, arg1, arg2, arg3); } \
    void MOCK_GLOBAL_FUNC_T(name)::initialize()
 
