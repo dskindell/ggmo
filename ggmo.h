@@ -13,9 +13,9 @@
 #define GMO_EXPECT_CALL(name, params) EXPECT_CALL(GMO(name), name params)
 #define GMO_ON_CALL(name, params) ON_CALL(GMO(name), name params)
 
-#define DECL_GLOBAL_FUNC_MOCK(func)        Mock_##func             _mock_##func
-#define DECL_NICE_GLOBAL_FUNC_MOCK(func)   NiceMock<Mock_##func>   _mock_##func
-#define DECL_STRICT_GLOBAL_FUNC_MOCK(func) StrictMock<Mock_##func> _mock_##func
+#define DECL_GLOBAL_FUNC_MOCK(func)        Mock_##func                        _mock_##func
+#define DECL_NICE_GLOBAL_FUNC_MOCK(func)   ::testing::NiceMock<Mock_##func>   _mock_##func
+#define DECL_STRICT_GLOBAL_FUNC_MOCK(func) ::testing::StrictMock<Mock_##func> _mock_##func
 
 template <class T>
 class GMOSingletonMock
